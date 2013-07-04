@@ -3,12 +3,18 @@ all: dtls-server dtls-client
 	$(MAKE) $(MAKEFLAGS) clean
 	$(MAKE) $(MAKEFLAGS) ROLE=client dtls-client
 
-CONTIKI=../..
-#CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
+CONTIKI=../contiki
+CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
+
+APPDIRS += ${addprefix ../, $(APPS)}
 
 WITH_UIP6=1
 UIP_CONF_IPV6=1
-UIP_CONF_RPL=0
+UIP_CONF_RPL=1
+UIP_CONF_TCP=0
+
+#linker optimizations
+SMALL=1
 
 ifneq ($(ROLE),client)
 	CFLAGS+= -DHARD_CODED_ADDRESS=\"aaaa::02:232\"

@@ -1,0 +1,10 @@
+Makefile
+autom4te.cache
+config.h
+config.log
+configure
+contiki-*.a
+*.map
+*.bin
+*.d
+obj_*
